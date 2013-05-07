@@ -1,0 +1,34 @@
+name: TestML
+description: Acmeist Unit Test Framework
+version: 0.0.1
+licenses:
+- type: MIT
+  url: https://raw.github.com/ingydotnet//master/LICENSE
+copyright: 2010-2013
+
+author:
+  name: Ingy döt Net
+  email: ingy@ingy.net
+  url: http://ingy.net
+
+keywords: [testml, testing, acmeism]
+
+homepage: http://testml.org
+repository:
+  url: git://github.com/ingydotnet/testml-ls.git
+  type: git
+bugs:
+  url: https://github.com/ingydotnet/testml-ls/issues
+
+npm:
+  name: testml
+  main: ./lib/TesML
+  directories:
+    lib: ./lib
+  engines:
+    node: '>=0.4.0'
+  devDependencies:
+    LiveScript: '>=1.1.1'
+    js-yaml: '>=2.0.5'
+  scripts:
+    test: livescript -e '(require "./test/lib/Test/Harness").run()' test
