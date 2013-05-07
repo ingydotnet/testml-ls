@@ -20,6 +20,9 @@ repository:
 bugs:
   url: https://github.com/ingydotnet/testml-ls/issues
 
+testml:
+  source: ../testml-tml
+
 npm:
   name: testml
   main: ./lib/TesML
@@ -32,3 +35,4 @@ npm:
     js-yaml: '>=2.0.5'
   scripts:
     test: livescript -e '(require "./test/lib/Test/Harness").run()' test
+  pkg: ../pkg-ls
