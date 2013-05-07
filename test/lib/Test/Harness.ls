@@ -10,7 +10,7 @@ global.xxx = ->
 
 fs            = require 'fs'
 path          = require 'path'
-CoffeeScript  = require 'coffee-script'
+LiveScript  = require 'LiveScript'
 {exec}        = require 'child_process'
 
 # ANSI Terminal Colors.
@@ -30,10 +30,11 @@ currentFile = null
 passedTests = 0
 failures    = []
 
-global[name] = func for name, func of require 'assert'
+for name, func of require 'assert'
+  global[name] = func
 
 # Convenience aliases.
-global.CoffeeScript = CoffeeScript
+global.LiveScript = LiveScript
 
 # Our test helper function for delimiting different test cases.
 global.test = (description, fn) ->
@@ -58,7 +59,8 @@ arrayEgal = (a, b) ->
   if egal a, b then yes
   else if a instanceof Array and b instanceof Array
     return no unless a.length is b.length
-    return no for el, idx in a when not arrayEgal el, b[idx]
+    for el, idx in a when not arrayEgal el, b[idx]
+      return no
     yes
 
 global.eq      = (a, b, msg) -> ok egal(a, b), msg
@@ -73,10 +75,10 @@ process.on 'exit', ->
   log "failed #{failures.length} and #{message}", red
   for fail in failures
     {error, filename}  = fail
-    jsFilename         = filename.replace(/\.coffee$/,'.js')
-    match              = error.stack?.match(new RegExp(fail.file+":(\\d+):(\\d+)"))
-    match              = error.stack?.match(/on line (\d+):/) unless match
-    [match, line, col] = match if match
+    jsFilename         = filename.replace(/\.ls$/,'.js')
+    match_             = error.stack?.match(new RegExp(fail.file+":(\\d+):(\\d+)"))
+    match_              = error.stack?.match(/on line (\d+):/) unless match_
+    [match_, line, col] = match_ if match_
     console.log ''
     log "  #{error.description}", red if error.description
     log "  #{error.stack}", red
@@ -95,7 +97,7 @@ exports.run = (paths) ->
     catch error
       return
     if stat.isFile()
-      if path.match /\.coffee$/i
+      if path.match /\.ls$/i
         # XXX this is a local hack
         if not path.match /\/src\//
           files.push path
@@ -111,7 +113,7 @@ exports.run = (paths) ->
     code = String fs.readFileSync filename
     try
       require.main = {}
-      CoffeeScript.run code, {filename}
+      LiveScript.run code, {filename}
     catch error
       failures.push {filename, error}
 

@@ -13,7 +13,7 @@ NPM_CODE := $(SRC_CODE:%.ls=npm/%.js)
 
 SRC_TEST := $(shell find test -type f)
 NPM_TEST := $(SRC_TEST:%=npm/%)
-NPM_TEST := $(NPM_TEST:npm/test/lib/%.coffee=npm/test/lib/%.js)
+NPM_TEST := $(NPM_TEST:npm/test/lib/%.ls=npm/test/lib/%.js)
 
 SRC_DOCS := $(shell find doc -type f)
 NPM_DOCS := $(SRC_DOCS:%=npm/%)
@@ -58,10 +58,10 @@ $(NPM_DIRS):
 	mkdir -p $@
 
 $(TARGET)/lib/%.js: lib/%.ls
-	lsc --compile -p $< > $@
+	livescript --compile -p $< > $@
 
-$(TARGET)/test/%.js: test/%.coffee
-	coffee --compile -p $< > $@
+$(TARGET)/test/%.js: test/%.ls
+	livescript --compile -p $< > $@
 
 $(TARGET)/test/%: test/%
 	cp $< $@
