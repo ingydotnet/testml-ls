@@ -1,4 +1,5 @@
 modules = [
+  'TestML.js'
   'TestML/Runtime/Unit.js'
 ]
 
