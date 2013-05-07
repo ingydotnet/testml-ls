@@ -1,17 +1,17 @@
 testml = require("./lib/TestML")
 
 class TestMLBridge
-  uppercase: (s) ->
-    s.to-upper-case!
+  uppercase: (string_) ->
+    string_.to-upper-case!
   
-  lowercase: (s) ->
-    s.to-lower-case!
+  lowercase: (string_) ->
+    string_.to-lower-case!
 
   combine: (...args) ->
     fold (++), "", args
 
-  f1: (n) ->
-    n * 42 + n
+  f1: (num) ->
+    num * 42 + num
 
-  f2: (n) ->
-    n ^ 2 + n
+  f2: (num) ->
+    num ^ 2 + num
