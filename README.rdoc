@@ -2,4 +2,28 @@
 
 TestML is an Acmeist unit test language/framework.
 
+= Development
 
+You'll need to install LiveScript and Node.js:
+
+    > npm install LiveScript
+
+Start by building the NPM package:
+
+    > make build
+
+This will make an 'npm' directory with all the contents of an NPM package. Take
+a look around in there.
+
+To run all the tests:
+
+    > make test
+
+This just builds the npm package, cd's into it and runs 'make test' in there.
+
+The tests are mostly failing because TestML is not yet implemented. To run specific tests:
+
+    > export NPM_TESTS=test/require.ls
+    > make test
+
+This test should pass.
