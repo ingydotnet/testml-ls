@@ -111,8 +111,7 @@ $(TARGET)/Makefile: .Makefile
 	cp $< $@
 
 $(TARGET)/test/%.ls: .testml.ls
-	cp $< $@
-	perl -pi -e 's/%NAME%/$(@:$(TARGET)/test/%.ls=%)/' $@
+	perl -pe 's/%NAME%/$(@:$(TARGET)/test/%.ls=%)/g' $< > $@
 
 .SECONDEXPANSION:
 $(TARGET)/$(NPM_TESTML)/%.tml: $(SRC_TESTML)/%.tml
