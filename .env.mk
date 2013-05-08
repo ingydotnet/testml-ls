@@ -1,5 +1,5 @@
-SRC_TESTML := ../testml-tml
-SRC_TML_FILES := $(shell find $(SRC_TESTML) -name *.tml \
+SOURCE_TESTML := ../testml-tml
+SOURCE_TML_FILES := $(shell find $(SOURCE_TESTML) -name *.tml \
     | egrep -v 'comments' \
     | grep -v 'data' \
     | grep -v 'external[12]' \
