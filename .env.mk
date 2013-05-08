@@ -5,4 +5,5 @@ SRC_TML_FILES := $(shell find $(SRC_TESTML) -name *.tml \
     | grep -v 'external[12]' \
     | grep -v 'syntax2\?' \
     | grep -v 'topic' \
+    | sort \
 )
